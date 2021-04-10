@@ -1,7 +1,7 @@
-package com.crio.starter.controller;
+package com.dtech.persondemo.controller;
 
-import com.crio.starter.exchange.ResponseDto;
-import com.crio.starter.service.GreetingsService;
+import com.dtech.persondemo.exchange.PersonDto;
+import com.dtech.persondemo.service.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class GreetingsController {
+public class PersonController {
 
-  private final GreetingsService greetingsService;
+  private final PersonService personService;
 
   @GetMapping("/say-hello")
-  public ResponseDto sayHello(@RequestParam String messageId) {
-    return greetingsService.getMessage(messageId);
+  public PersonDto sayHello(@RequestParam String messageId) {
+    return null;
   }
 
 }
