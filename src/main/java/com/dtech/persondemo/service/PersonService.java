@@ -16,9 +16,9 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
 
-    public Person savePerson(PersonDto personDto) {
+    public PersonDto savePerson(PersonDto personDto) {
         Person person = personMapper.buildPerson(personDto);
-        return personRepository.save(person);
+        return personMapper.buildPerson(personRepository.save(person));
 
     }
 

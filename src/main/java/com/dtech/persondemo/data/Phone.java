@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Phone {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column
@@ -22,6 +22,6 @@ public class Phone {
   @Column
   private String type;
 
-  @ManyToOne
+  @OneToOne(optional = true)
   private Person person;
 }

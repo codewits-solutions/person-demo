@@ -13,7 +13,7 @@ import java.util.Set;
 public class Person {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Column
@@ -22,8 +22,8 @@ public class Person {
   @Column
   private String lastName;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "person_id")
   private Set<Phone> phones = new HashSet<>();
 
 }
