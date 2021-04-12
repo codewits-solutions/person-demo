@@ -9,7 +9,7 @@ USER root
 RUN mkdir code
 COPY . /code
 RUN mkdir -p /root/.gradle/wrapper/dists/gradle-6.6.1-bin
-ADD ./gradle-6.6.1-bin /root/.gradle/wrapper/dists/gradle-6.6.1-bin
+#ADD ./gradle-6.6.1-bin /root/.gradle/wrapper/dists/gradle-6.6.1-bin
 RUN cd /code && ./gradlew bootjar
 
 CMD /code/start.sh
