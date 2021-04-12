@@ -9,6 +9,7 @@ import com.dtech.persondemo.service.PersonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.net.URI;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,15 +30,14 @@ class PersonControllerTest {
   private PersonService personService;
 
   @Test
-  void sayHello() throws Exception {
+  void findOne() throws Exception {
     //given
-//    Mockito.doReturn(new PersonDto("Hello Java"))
-//        .when(personService).getMessage("001");
+    Mockito.doReturn(new PersonDto())
+        .when(personService).findPersonById(1);
 
     // when
     URI uri = UriComponentsBuilder
-        .fromPath("/say-hello")
-        .queryParam("messageId", "001")
+        .fromPath("/person/1")
         .build().toUri();
 
     MockHttpServletResponse response = mvc.perform(
@@ -48,9 +48,9 @@ class PersonControllerTest {
     String responseStr = response.getContentAsString();
     ObjectMapper mapper = new ObjectMapper();
     PersonDto personDto = mapper.readValue(responseStr, PersonDto.class);
-//    PersonDto ref = new PersonDto("Hello Java");
+    PersonDto ref = new PersonDto();
 
-//    assertEquals(personDto, ref);
-//    Mockito.verify(personService, Mockito.times(1)).getMessage("001");
+    assertEquals(personDto, ref);
+    Mockito.verify(personService, Mockito.times(1)).findPersonById(1);
   }
 }
